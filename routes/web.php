@@ -23,6 +23,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('produk', App\Http\Controllers\ProdukController::class)->middleware('auth');
 
+Route::resource('merek', App\Http\Controllers\MerekController::class)->middleware('auth');
+
 // export pdf
 Route::post('produk-export-produk', [App\Models\ProdukController::class, 'viewPDF'])->name('produk.view-pdf');
 

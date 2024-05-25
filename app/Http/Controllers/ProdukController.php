@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
+use App\Models\Merek;
 use Illuminate\Http\Request;
 use Storage;
 use PDF;
@@ -44,7 +45,8 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        return view('produk.create');
+        $merek=Merek::all();
+        return view('produk.create', compact('merek'));
     }
 
     /**
@@ -67,6 +69,7 @@ class ProdukController extends Controller
         $produk->nama = $request->nama;
         $produk->harga = $request->harga;
         $produk->deskripsi = $request->deskripsi;
+        $produk->id_merek = $request->id_merek;
 
         // upload img
         $image = $request->file('image');
@@ -97,8 +100,9 @@ class ProdukController extends Controller
      */
     public function edit($id)
     {
+        $merek=Merek::all();
         $produk=Produk::findOrFail($id);
-        return view('produk.edit', compact('produk'));
+        return view('produk.edit', compact('produk', 'merek'));
     }
 
     /**
@@ -120,6 +124,8 @@ class ProdukController extends Controller
         $produk->nama=$request->nama;
         $produk->harga=$request->harga;
         $produk->deskripsi=$request->deskripsi;
+        $produk->id_merek = $request->id_merek;
+
 
         // upload produk
             $image=$request->file('image');

@@ -61,6 +61,14 @@
                             </span>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <label for="">Merek</label>
+                            <select name="id_merek" id="" class="form-control">
+                                @foreach ($merek as $item)
+                                    <option value="{{$item->id}}">{{ $item->nama_merek }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-sm btn-primary">SIMPAN</button>
                         <button type="reset" class="btn btn-sm btn-warning">RESET</button>
                     </form>
